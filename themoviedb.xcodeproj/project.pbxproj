@@ -24,6 +24,9 @@
 		64B696EB2097216F008A14D4 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B696EA2097216E008A14D4 /* SDWebImage.framework */; };
 		64B696ED20972443008A14D4 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B696EC20972443008A14D4 /* MoviesViewModel.swift */; };
 		64B696F320975911008A14D4 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B696F220975911008A14D4 /* Search.storyboard */; };
+		64EDC3142097715000765AEF /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B696EA2097216E008A14D4 /* SDWebImage.framework */; };
+		64EDC3152097715400765AEF /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B696D820970B31008A14D4 /* SwiftyJSON.framework */; };
+		64EDC3162097721B00765AEF /* MoviesSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 64EDC31220976F0800765AEF /* MoviesSample.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +67,10 @@
 		64B696E220971126008A14D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		64B696E420971FEF008A14D4 /* MoviesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableView.swift; sourceTree = "<group>"; };
 		64B696E620972076008A14D4 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
-		64B696E820972168008A14D4 /* SDWebImage.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SDWebImage.framework.dSYM; path = Carthage/Build/iOS/SDWebImage.framework.dSYM; sourceTree = "<group>"; };
 		64B696EA2097216E008A14D4 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		64B696EC20972443008A14D4 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		64B696F220975911008A14D4 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		64EDC31220976F0800765AEF /* MoviesSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoviesSample.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64EDC3152097715400765AEF /* SwiftyJSON.framework in Frameworks */,
+				64EDC3142097715000765AEF /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +146,7 @@
 		64B696B9209709C0008A14D4 /* themoviedbTests */ = {
 			isa = PBXGroup;
 			children = (
+				64EDC31220976F0800765AEF /* MoviesSample.json */,
 				64B696BA209709C0008A14D4 /* themoviedbTests.swift */,
 				64B696BC209709C0008A14D4 /* Info.plist */,
 			);
@@ -168,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				64B696EA2097216E008A14D4 /* SDWebImage.framework */,
-				64B696E820972168008A14D4 /* SDWebImage.framework.dSYM */,
 				64B696D920970B31008A14D4 /* Alamofire.framework */,
 				64B696D820970B31008A14D4 /* SwiftyJSON.framework */,
 			);
@@ -316,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64EDC3162097721B00765AEF /* MoviesSample.json in Resources */,
 				64B696B0209709C0008A14D4 /* LaunchScreen.storyboard in Resources */,
 				64B696AD209709C0008A14D4 /* Assets.xcassets in Resources */,
 				64B696F320975911008A14D4 /* Search.storyboard in Resources */,
@@ -578,6 +584,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E7DGCG72AA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = themoviedbTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchbesoft.themoviedbTests;
@@ -595,6 +605,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E7DGCG72AA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = themoviedbTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchbesoft.themoviedbTests;

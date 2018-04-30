@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import SwiftyJSON
 @testable import themoviedb
 
 class themoviedbTests: XCTestCase {
@@ -21,9 +22,30 @@ class themoviedbTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testMoviesParsing() {
+        guard let path = Bundle.main.path(forResource: "MoviesSample", ofType: "json") else {
+            XCTFail()
+            return
+        }
+        
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path))
+            let json = try JSON(data: data)
+            
+            guard let results = json["results"].array else {
+                XCTFail()
+                return
+            }
+            
+            for result in results {
+                XCTAssertNotNil(Movie.parseJSON(json: result))
+            }
+            
+        } catch {
+            XCTFail("\(error)")
+        }
+        
+        
     }
     
     func testPerformanceExample() {
