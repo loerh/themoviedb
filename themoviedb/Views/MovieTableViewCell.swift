@@ -12,8 +12,6 @@ import SDWebImage
 
 class MoviesTableViewCell: UITableViewCell {
     
-    static let identifier = "MoviesTableViewCell"
-    
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var coverImageView: UIImageView?
     @IBOutlet weak var overviewLabel: UILabel?
@@ -29,3 +27,9 @@ class MoviesTableViewCell: UITableViewCell {
         }
     }
 }
+
+enum TableViewCellSize: String {
+    case regular = "MoviesTableViewCell"
+    case large = "MoviesTableViewCellLarge"
+}
+

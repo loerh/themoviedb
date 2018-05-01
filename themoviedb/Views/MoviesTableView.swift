@@ -15,6 +15,7 @@ class MoviesTableView: UITableView {
     private var movies: [Movie]?
     private var lastItemDelegate: LastItemDelegate?
     private var currentSearchText: String?
+    private var selectedIndexPath: IndexPath?
     
     func setup(withMovies movies: [Movie], itemDelegate: LastItemDelegate?) {
         delegate = self
@@ -54,7 +55,8 @@ extension MoviesTableView: UITableViewDataSource {
             lastItemDelegate?.didReachLastItem()
         }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MoviesTableViewCell.identifier) as? MoviesTableViewCell else {
+        let identifier = currentSearchText == nil ? TableViewCellSize.regular.rawValue : TableViewCellSize.large.rawValue
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MoviesTableViewCell else {
             return UITableViewCell()
         }
         
@@ -70,12 +72,34 @@ extension MoviesTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return currentSearchText == nil ? 120 : 180
+        
+        var heightForRow: CGFloat = currentSearchText == nil ? 120 : 180
+        if indexPath == selectedIndexPath {
+            
+            guard let movieCell = tableView.cellForRow(at: indexPath) as? MoviesTableViewCell else {
+                return heightForRow
+            }
+            let increasedHeight = (movieCell.overviewLabel?.requiredHeight ?? 0) - (movieCell.overviewLabel?.bounds.size.height ?? 0)
+            heightForRow += increasedHeight + 5
+        }
+        
+        return heightForRow
     }
 }
 
 extension MoviesTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let cell = tableView.cellForRow(at: indexPath) as? MoviesTableViewCell else {
+//            return
+//        }
+        selectedIndexPath = indexPath
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        selectedIndexPath = nil
+    }
 }
 
 protocol LastItemDelegate {

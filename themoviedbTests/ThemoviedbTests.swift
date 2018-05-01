@@ -10,7 +10,7 @@ import XCTest
 import SwiftyJSON
 @testable import themoviedb
 
-class themoviedbTests: XCTestCase {
+class ThemoviedbTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -48,10 +48,28 @@ class themoviedbTests: XCTestCase {
         
     }
     
-    func testPerformanceExample() {
+    func testMoviesViewModel() {
+        let viewModel = MoviesViewModel()
+        viewModel.fetchMostPopularMovies { (movies) in
+            XCTAssertNotNil(movies)
+        }
+    }
+    
+    func testPerformanceAPIResponse() {
         // This is an example of a performance test case.
+        
         self.measure {
-            // Put the code you want to measure the time of here.
+            
+            var flag = 1
+            let expect = expectation(description: "API Response performance")
+            
+            APIManager.shared.fetchMostPopularMovies(completion: { (movies) in
+                flag += 1
+                XCTAssertNotNil(movies)
+                if flag == 10 { expect.fulfill() }
+            })
+            
+            wait(for: [expect], timeout: 20)
         }
     }
     
