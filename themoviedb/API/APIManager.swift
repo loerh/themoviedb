@@ -10,18 +10,28 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+
+/**
+ A manager for API calls.
+ */
 class APIManager {
     
+    /// The shared instance
     static let shared = APIManager()
     
+    /**
+     Fetches most popular movies from the API.
+     - parameter page: The pagination number to use for this request. Defaults to 1.
+     */
     func fetchMostPopularMovies(forPage page: Int = 1, completion: @escaping MostPopularMoviesCompletion) {
         
-
+        /// Define parameters
         let parameters: Parameters = [
             "page": page,
             "api_key": Constants.tmdbAPIKey
         ]
         
+        /// Fetch
         fetch(withAdditionalURL: "list/1", parameters: parameters) { (json) in
             
             guard let json = json else {
@@ -30,6 +40,7 @@ class APIManager {
                 return
             }
             
+            /// Extract results
             guard let results = json["results"].array else {
                 print("Could not find any results key in JSON")
                 completion(nil)
@@ -42,6 +53,7 @@ class APIManager {
                 return
             }
             
+            /// Parse JSON objects to Movie objects
             var movies = [Movie]()
             for result in results {
                 if let movie = Movie.parseJSON(json: result) {
@@ -53,6 +65,15 @@ class APIManager {
         }
     }
     
+    /**
+     Fetches generically from the API.
+     - parameter additionalURL: The additional URL to use after base URL.
+     - parameter method: The HTTPMethod to use e.g. GET, POST, PUT, ... Defaults to GET.
+     - parameter parameters: The list of parameters to use for this request. Defaults to nil.
+     - parameter encoding: The type of encoding. Defaults to URLEncoding.default.
+     - parameter headers: The HTTPHeadears to use, if any. Defaults to nil.
+     - parameter completion: The completion handler that sends back the freshly initialised JSON object, if any.
+     */
     private func fetch(withAdditionalURL additionalURL: String,
                        method: HTTPMethod = .get,
                        parameters: Parameters? = nil,
@@ -64,12 +85,14 @@ class APIManager {
         
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers).responseData { (dataResponse) in
             
+            /// Make sure we've got data back
             guard let data = dataResponse.result.value else {
                 print("Could not find any data for this request!")
                 completion(nil)
                 return
             }
             
+            /// Initialise JSON Object
             do {
                 let json = try JSON(data: data)
                 completion(json)

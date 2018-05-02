@@ -8,13 +8,28 @@
 
 import UIKit
 
+/**
+ The view controller showing movies.
+ */
 class MoviesViewController: UIViewController {
+    
+    //MARK: Properties
 
+    /// The movies table view
     @IBOutlet weak var moviesTableView: MoviesTableView?
+    
+    /// The activity indicator
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    
+    /// The search bar
     @IBOutlet weak var searchBar: UISearchBar?
     
-    private lazy var moviesViewModel = MoviesViewModel()
+    //MARK: Outlets
+    
+    /// The movies view model
+    private let moviesViewModel = MoviesViewModel()
+    
+    //MARK: App Life Cycle Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +40,12 @@ class MoviesViewController: UIViewController {
             self.activityIndicator?.stopAnimating()
         }
     }
+    
+    //MARK: Fetch
 
+    /**
+     Fetches data to feed the tableview on this view controller.
+     */
     private func fetchData(completion: @escaping () -> Void) {
         
         moviesViewModel.fetchMostPopularMovies { (movies) in
@@ -39,7 +59,7 @@ class MoviesViewController: UIViewController {
 
 }
 
-extension MoviesViewController: LastItemDelegate {
+extension MoviesViewController: TableViewLastItemDelegate {
     
     func didReachLastItem() {
         
@@ -56,6 +76,12 @@ extension MoviesViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         moviesTableView?.filterMovies(withSearchText: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        moviesTableView?.filterMovies()
+        view.endEditing(true)
     }
 }
 

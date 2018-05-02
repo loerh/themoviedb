@@ -10,13 +10,29 @@ import Foundation
 import UIKit
 import SDWebImage
 
+/**
+ The table view cell for a movie.
+ */
 class MoviesTableViewCell: UITableViewCell {
     
+    /// The title label
     @IBOutlet weak var titleLabel: UILabel?
+    
+    /// The cover image view
     @IBOutlet weak var coverImageView: UIImageView?
+    
+    /// The overview label
     @IBOutlet weak var overviewLabel: UILabel?
+    
+    /// The release year label
     @IBOutlet weak var releaseYearLabel: UILabel?
     
+    //MARK: Configuration
+    
+    /**
+     Configures the cell using metadata.
+     - parameter movie: The Movie object to use for this cell.
+     */
     func configure(with movie: Movie) {
         
         titleLabel?.text = movie.title
@@ -28,8 +44,15 @@ class MoviesTableViewCell: UITableViewCell {
     }
 }
 
+/**
+ Contains the list of table view cell sizes.
+ */
 enum TableViewCellSize: String {
+    
+    /// Regular size
     case regular = "MoviesTableViewCell"
+    
+    /// Large size
     case large = "MoviesTableViewCellLarge"
 }
 

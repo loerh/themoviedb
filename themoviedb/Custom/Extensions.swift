@@ -11,28 +11,15 @@ import UIKit
 
 extension UILabel {
     
-    var isTruncated: Bool {
-        
-        guard let labelText = text else {
-            return false
-        }
-        
-        let labelTextSize = (labelText as NSString).boundingRect(with: CGSize(width: frame.size.width,
-                                                                              height: .greatestFiniteMagnitude),
-                                                                 options: .usesLineFragmentOrigin,
-                                                                 attributes: [.font: font],
-                                                                 context: nil).size
-        
-        return labelTextSize.height > bounds.size.height
-    }
- 
+    /// The required height that this label should be given its CGRect and font
     var requiredHeight: CGFloat {
+        
         guard let text = text else {
             return bounds.size.height
         }
         
-        let textRect = (text as NSString).boundingRect(with: CGSize(width: frame.size.width,
-                                                                      height: .greatestFiniteMagnitude),
+        /// Get the CGRect for this label using its size and font
+        let textRect = (text as NSString).boundingRect(with: CGSize(width: frame.size.width, height: .greatestFiniteMagnitude),
                                                          options: .usesLineFragmentOrigin,
                                                          attributes: [.font: font],
                                                          context: nil)
