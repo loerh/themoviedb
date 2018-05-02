@@ -90,10 +90,6 @@ extension MoviesTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == (movies?.count ?? 0) - 1 {
-            lastItemDelegate?.didReachLastItem()
-        }
-        
         let identifier = currentSearchText == nil ? TableViewCellSize.regular.rawValue : TableViewCellSize.large.rawValue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MoviesTableViewCell else {
             return UITableViewCell()
@@ -112,6 +108,7 @@ extension MoviesTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+        /// If in search mode or selected row mode, use automatic dimension
         if currentSearchText != nil || indexPath == selectedIndexPath {
             return UITableViewAutomaticDimension
         }
@@ -119,11 +116,13 @@ extension MoviesTableView: UITableViewDataSource {
         return currentSearchText == nil ? 130 : 200
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        /// Check if we have reached last item (to load more cells for instance)
+        if indexPath.row == (movies?.count ?? 0) - 1 {
+            lastItemDelegate?.didReachLastItem()
+        }
     }
-    
-    
 }
 
 extension MoviesTableView: UITableViewDelegate {

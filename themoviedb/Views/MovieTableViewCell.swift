@@ -35,7 +35,7 @@ class MoviesTableViewCell: UITableViewCell {
      */
     func configure(with movie: Movie) {
         
-        titleLabel?.text = movie.title
+        titleLabel?.text = releaseYearLabel == nil ? movie.title + " (\(movie.year))" : movie.title
         overviewLabel?.text = movie.overview
         releaseYearLabel?.text = "\(movie.year)"
         if let imageURL = movie.imageURL {
