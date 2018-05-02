@@ -61,6 +61,11 @@ class MoviesViewController: UIViewController {
 
 extension MoviesViewController: TableViewLastItemDelegate {
     
+    //MARK: Table View Last Item Delegate Functions
+    
+    /**
+     When the table view has reached the last item.
+     */
     func didReachLastItem() {
         
         activityIndicator?.isHidden = false
@@ -73,6 +78,8 @@ extension MoviesViewController: TableViewLastItemDelegate {
 }
 
 extension MoviesViewController: UISearchBarDelegate {
+    
+    //MARK: Search Bar Delegate Functions
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         moviesTableView?.filterMovies(withSearchText: searchText)

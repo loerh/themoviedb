@@ -45,6 +45,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="80.5" height="122"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="qCG-Az-hDX" secondAttribute="height" multiplier="500:750" id="N8V-Ae-3pB"/>
+                                                                <constraint firstAttribute="width" constant="80.5" id="h2A-0y-pke"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOF-rD-Iwp">

@@ -48,6 +48,31 @@ class ThemoviedbTests: XCTestCase {
         
     }
     
+    func testFailingParsing() {
+        
+        guard let path = Bundle.main.path(forResource: "MoviesSampleMissingFields", ofType: "json") else {
+            XCTFail()
+            return
+        }
+        
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path))
+            let json = try JSON(data: data)
+            
+            guard let results = json["results"].array else {
+                XCTFail()
+                return
+            }
+            
+            for result in results {
+                XCTAssertNil(Movie.parseJSON(json: result))
+            }
+            
+        } catch {
+            XCTFail("\(error)")
+        }
+    }
+    
     func testMoviesViewModel() {
         let viewModel = MoviesViewModel()
         viewModel.fetchMostPopularMovies { (movies) in
@@ -55,22 +80,30 @@ class ThemoviedbTests: XCTestCase {
         }
     }
     
+    func testMoviesAPI() {
+        let expect = expectation(description: "API Movies Test")
+        APIManager.shared.fetchMostPopularMovies { (movies) in
+            XCTAssertNotNil(movies)
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 15, handler: nil)
+    }
+    
     func testPerformanceAPIResponse() {
-        // This is an example of a performance test case.
         
+        var flag = 0
+        let expect = expectation(description: "API Response performance")
         self.measure {
             
-            var flag = 1
-            let expect = expectation(description: "API Response performance")
-            
-            APIManager.shared.fetchMostPopularMovies(completion: { (movies) in
+            APIManager.shared.fetchMostPopularMovies { (movies) in
                 flag += 1
+                print("FLAG: \(flag)")
                 XCTAssertNotNil(movies)
                 if flag == 10 { expect.fulfill() }
-            })
-            
-            wait(for: [expect], timeout: 20)
+            }
         }
+        
+        waitForExpectations(timeout: 15, handler: nil)
     }
     
 }

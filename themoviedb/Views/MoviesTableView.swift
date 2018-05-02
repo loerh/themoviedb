@@ -123,7 +123,7 @@ extension MoviesTableView: UITableViewDataSource {
                 return heightForRow
             }
             let increasedHeight = (movieCell.overviewLabel?.requiredHeight ?? 0) - (movieCell.overviewLabel?.bounds.size.height ?? 0)
-            heightForRow += increasedHeight + 5
+            heightForRow += increasedHeight + 40
         }
         
         return heightForRow

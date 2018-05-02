@@ -33,16 +33,26 @@ class ThemoviedbUITests: XCTestCase {
     }
     
     func testElementsPresentInTableView() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let staticText = app.tables.staticTexts.firstMatch
-        let predicate = NSPredicate(format: "exists == 1")
-        let expect = expectation(for: predicate, evaluatedWith: staticText, handler: nil)
+        let predicate = NSPredicate(format: "count > 0")
+        let expect = expectation(for: predicate, evaluatedWith: app.cells, handler: nil)
         wait(for: [expect], timeout: 10)
     }
     
     func testTableViewScrollable() {
-        app.tables.firstMatch.swipeDown()
+        app.tables.firstMatch.swipeUp()
+        app.tables.firstMatch.swipeUp()
+    }
+    
+    func testSearchNoResults() {
+        
+        let searchMoviesSearchField = app.searchFields.firstMatch
+        searchMoviesSearchField.tap()
+        searchMoviesSearchField.typeText("difjwuyah")
+        XCTAssert(app.cells.count == 0)
+    }
+    
+    func testTableViewSelection() {
+        app.cells.firstMatch.tap()
     }
     
 }

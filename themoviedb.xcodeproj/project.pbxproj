@@ -27,6 +27,7 @@
 		64EDC3152097715400765AEF /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B696D820970B31008A14D4 /* SwiftyJSON.framework */; };
 		64EDC3162097721B00765AEF /* MoviesSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 64EDC31220976F0800765AEF /* MoviesSample.json */; };
 		64EDC31920987A2400765AEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EDC31820987A2400765AEF /* Extensions.swift */; };
+		64EDC31C2099C70600765AEF /* MoviesSampleMissingFields.json in Resources */ = {isa = PBXBuildFile; fileRef = 64EDC31A2099C6FC00765AEF /* MoviesSampleMissingFields.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		64B696EC20972443008A14D4 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		64EDC31220976F0800765AEF /* MoviesSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoviesSample.json; sourceTree = "<group>"; };
 		64EDC31820987A2400765AEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		64EDC31A2099C6FC00765AEF /* MoviesSampleMissingFields.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoviesSampleMissingFields.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				64EDC31220976F0800765AEF /* MoviesSample.json */,
+				64EDC31A2099C6FC00765AEF /* MoviesSampleMissingFields.json */,
 				64B696BA209709C0008A14D4 /* ThemoviedbTests.swift */,
 				64B696BC209709C0008A14D4 /* Info.plist */,
 			);
@@ -331,6 +334,7 @@
 			files = (
 				64EDC3162097721B00765AEF /* MoviesSample.json in Resources */,
 				64B696B0209709C0008A14D4 /* LaunchScreen.storyboard in Resources */,
+				64EDC31C2099C70600765AEF /* MoviesSampleMissingFields.json in Resources */,
 				64B696AD209709C0008A14D4 /* Assets.xcassets in Resources */,
 				64B696AB209709C0008A14D4 /* Main.storyboard in Resources */,
 			);
