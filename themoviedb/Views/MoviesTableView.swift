@@ -112,21 +112,11 @@ extension MoviesTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if currentSearchText != nil {
+        if currentSearchText != nil || indexPath == selectedIndexPath {
             return UITableViewAutomaticDimension
         }
-        
-        var heightForRow: CGFloat = currentSearchText == nil ? 120 : 180
-        if indexPath == selectedIndexPath {
-            
-            guard let movieCell = tableView.cellForRow(at: indexPath) as? MoviesTableViewCell else {
-                return heightForRow
-            }
-            let increasedHeight = (movieCell.overviewLabel?.requiredHeight ?? 0) - (movieCell.overviewLabel?.bounds.size.height ?? 0)
-            heightForRow += increasedHeight + 40
-        }
-        
-        return heightForRow
+      
+        return currentSearchText == nil ? 130 : 200
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

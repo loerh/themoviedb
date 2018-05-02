@@ -26,7 +26,6 @@
 		64EDC3142097715000765AEF /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B696EA2097216E008A14D4 /* SDWebImage.framework */; };
 		64EDC3152097715400765AEF /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B696D820970B31008A14D4 /* SwiftyJSON.framework */; };
 		64EDC3162097721B00765AEF /* MoviesSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 64EDC31220976F0800765AEF /* MoviesSample.json */; };
-		64EDC31920987A2400765AEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EDC31820987A2400765AEF /* Extensions.swift */; };
 		64EDC31C2099C70600765AEF /* MoviesSampleMissingFields.json in Resources */ = {isa = PBXBuildFile; fileRef = 64EDC31A2099C6FC00765AEF /* MoviesSampleMissingFields.json */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +70,6 @@
 		64B696EA2097216E008A14D4 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		64B696EC20972443008A14D4 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		64EDC31220976F0800765AEF /* MoviesSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoviesSample.json; sourceTree = "<group>"; };
-		64EDC31820987A2400765AEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		64EDC31A2099C6FC00765AEF /* MoviesSampleMissingFields.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoviesSampleMissingFields.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +127,6 @@
 		64B696A4209709C0008A14D4 /* themoviedb */ = {
 			isa = PBXGroup;
 			children = (
-				64EDC31720987A1B00765AEF /* Custom */,
 				64B696DF209710D6008A14D4 /* ViewControllers */,
 				64B696DE209710CD008A14D4 /* ViewModel */,
 				64B696DD209710C7008A14D4 /* Views */,
@@ -214,14 +211,6 @@
 				64B696A7209709C0008A14D4 /* MoviesViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		64EDC31720987A1B00765AEF /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				64EDC31820987A2400765AEF /* Extensions.swift */,
-			);
-			path = Custom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,7 +371,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B696E320971126008A14D4 /* Constants.swift in Sources */,
-				64EDC31920987A2400765AEF /* Extensions.swift in Sources */,
 				64B696E520971FEF008A14D4 /* MoviesTableView.swift in Sources */,
 				64B696E720972076008A14D4 /* MovieTableViewCell.swift in Sources */,
 				64B696D520970A9A008A14D4 /* APIManager.swift in Sources */,
