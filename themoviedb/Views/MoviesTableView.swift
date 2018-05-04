@@ -25,6 +25,7 @@ class MoviesTableView: UITableView {
     /// The selected index path
     private var selectedIndexPath: IndexPath?
     
+    /// If search mode is currently enabled or disabled
     private var isSearching = false
     
     //MARK: Setup
@@ -59,6 +60,10 @@ class MoviesTableView: UITableView {
     
     //MARK: Table Footer View
     
+    /**
+     Updates table view's footer view.
+     - parameter isSearching: If search mode is currently enabled. Defaults to false.
+     */
     private func updateTableFooter(isSearching: Bool = false) {
         
         var footerView: TableViewFooterView?

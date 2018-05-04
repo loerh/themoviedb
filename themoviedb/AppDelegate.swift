@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.font: font.withSize(15)], for: .normal)
         }
         
-        
         return true
     }
 }

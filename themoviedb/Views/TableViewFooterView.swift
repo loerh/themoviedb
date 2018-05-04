@@ -8,12 +8,18 @@
 
 import UIKit
 
+/**
+ The custom view for the table view footer.
+ */
 class TableViewFooterView: UIView {
     
+    /// The nib name to load the view
     static let nibName = "TableViewFooter"
     
+    /// The loading info label
     @IBOutlet weak var loadingLabel: UILabel?
     
+    /// The activity indicator
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     
 }

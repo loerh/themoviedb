@@ -21,6 +21,7 @@ class APIManager {
     
     /**
      Fetches most popular movies from the API.
+     - parameter requestType: The type of API request to use i.e. mostPopular or search.
      - parameter page: The pagination number to use for this request. Defaults to 1.
      */
     func fetchMovies(withRequestType requestType: APIMoviesRequestType, forPage page: Int, completion: @escaping MoviesCompletion) {
