@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64578DBB209B0FBF003644A8 /* TableViewFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64578DBA209B0FBF003644A8 /* TableViewFooter.xib */; };
+		64578DBD209B1097003644A8 /* TableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64578DBC209B1097003644A8 /* TableViewFooterView.swift */; };
 		64B696A6209709C0008A14D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B696A5209709C0008A14D4 /* AppDelegate.swift */; };
 		64B696A8209709C0008A14D4 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B696A7209709C0008A14D4 /* MoviesViewController.swift */; };
 		64B696AB209709C0008A14D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B696A9209709C0008A14D4 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64578DBA209B0FBF003644A8 /* TableViewFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewFooter.xib; sourceTree = "<group>"; };
+		64578DBC209B1097003644A8 /* TableViewFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewFooterView.swift; sourceTree = "<group>"; };
 		64B696A2209709C0008A14D4 /* themoviedb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = themoviedb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B696A5209709C0008A14D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64B696A7209709C0008A14D4 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				64B696AE209709C0008A14D4 /* LaunchScreen.storyboard */,
 				64B696B1209709C0008A14D4 /* Info.plist */,
 				64B696E220971126008A14D4 /* Constants.swift */,
+				64578DBA209B0FBF003644A8 /* TableViewFooter.xib */,
 			);
 			path = themoviedb;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 			children = (
 				64B696E420971FEF008A14D4 /* MoviesTableView.swift */,
 				64B696E620972076008A14D4 /* MovieTableViewCell.swift */,
+				64578DBC209B1097003644A8 /* TableViewFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 				64B696B0209709C0008A14D4 /* LaunchScreen.storyboard in Resources */,
 				64EDC31C2099C70600765AEF /* MoviesSampleMissingFields.json in Resources */,
 				64B696AD209709C0008A14D4 /* Assets.xcassets in Resources */,
+				64578DBB209B0FBF003644A8 /* TableViewFooter.xib in Resources */,
 				64B696AB209709C0008A14D4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +379,7 @@
 			files = (
 				64B696E320971126008A14D4 /* Constants.swift in Sources */,
 				64B696E520971FEF008A14D4 /* MoviesTableView.swift in Sources */,
+				64578DBD209B1097003644A8 /* TableViewFooterView.swift in Sources */,
 				64B696E720972076008A14D4 /* MovieTableViewCell.swift in Sources */,
 				64B696D520970A9A008A14D4 /* APIManager.swift in Sources */,
 				64B696A8209709C0008A14D4 /* MoviesViewController.swift in Sources */,

@@ -6,4 +6,14 @@
 //  Copyright © 2018 Laurent Meert. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class TableViewFooterView: UIView {
+    
+    static let nibName = "TableViewFooter"
+    
+    @IBOutlet weak var loadingLabel: UILabel?
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    
+}

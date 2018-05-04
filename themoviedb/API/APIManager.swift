@@ -23,36 +23,48 @@ class APIManager {
      Fetches most popular movies from the API.
      - parameter page: The pagination number to use for this request. Defaults to 1.
      */
-    func fetchMostPopularMovies(forPage page: Int = 1, completion: @escaping MostPopularMoviesCompletion) {
+    func fetchMovies(withRequestType requestType: APIMoviesRequestType, forPage page: Int, completion: @escaping MoviesCompletion) {
         
-        /// Define parameters
-        let parameters: Parameters = [
+        /// Define parameters and additional URL
+        var parameters: Parameters = [
             "page": page,
             "api_key": Constants.tmdbAPIKey
         ]
         
+        let additionalURL: String
+        
+        switch requestType {
+        
+        case.mostPopular:
+            additionalURL = "movie/popular"
+            
+        case .search(let keyword):
+            additionalURL = "search/movie"
+            parameters["query"] = keyword
+        }
+        
         /// Fetch
-        fetch(withAdditionalURL: "list/1", parameters: parameters) { (json) in
+        fetch(withAdditionalURL: additionalURL, parameters: parameters) { (json) in
             
             guard let json = json else {
                 print("Error fetching Most popular movies.")
                 completion(nil)
                 return
             }
-            
+
             /// Extract results
             guard let results = json["results"].array else {
                 print("Could not find any results key in JSON")
                 completion(nil)
                 return
             }
-            
+
             guard results.count > 0 else {
                 print("Empty array of results, no more movies to fetch.")
                 completion(nil)
                 return
             }
-            
+
             /// Parse JSON objects to Movie objects
             var movies = [Movie]()
             for result in results {
@@ -60,7 +72,7 @@ class APIManager {
                     movies.append(movie)
                 }
             }
-            
+
             completion(movies)
         }
     }
@@ -102,4 +114,9 @@ class APIManager {
             }
         }
     }
+}
+
+enum APIMoviesRequestType {
+    case mostPopular
+    case search(String)
 }

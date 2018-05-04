@@ -8,11 +8,26 @@
 
 import Foundation
 
+/**
+ The list of constants for the overall application.
+ */
 struct Constants {
     
-    static let apiBaseURL = "https://api.themoviedb.org/4/"
+    /// The API base URL
+    static let apiBaseURL = "https://api.themoviedb.org/3/"
+    
+    /// The API image base URL
     static let apiImageBaseURL = "https://image.tmdb.org/t/p/"
+    
+    /// The API key for themoviedb.com's API
     static let tmdbAPIKey = "93aea0c77bc168d8bbce3918cefefa45"
+    
+    /// The most popular movies path (for API and key value binding)
+    static let popularMoviesPath = "movie/popular"
+    
+    /// The search movies path (for API and key value binding)
+    static let searchMoviesPath = "search/movie"
 }
 
-typealias MostPopularMoviesCompletion = ([Movie]?) -> Void
+/// A type alias for movies completion
+typealias MoviesCompletion = ([Movie]?) -> Void

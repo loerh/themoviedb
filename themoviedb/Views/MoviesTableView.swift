@@ -16,22 +16,23 @@ class MoviesTableView: UITableView {
     
     //MARK: Properties
     
-    /// The initial list of movies without any filtering
-    private var allMovies: [Movie]?
-    
     /// The showed list of movies on the table view. It may or may not have been filtered
     private var movies: [Movie]?
     
     /// The last item delegate
     private var lastItemDelegate: TableViewLastItemDelegate?
     
-    /// The current search text, if any
-    private var currentSearchText: String?
-    
     /// The selected index path
     private var selectedIndexPath: IndexPath?
     
+    private var isSearching = false
+    
     //MARK: Setup
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        updateTableFooter()
+    }
     
     /**
      Sets up the table view.
@@ -42,44 +43,36 @@ class MoviesTableView: UITableView {
         
         delegate = self
         dataSource = self
-        self.allMovies = movies
         
-        if let searchText = currentSearchText {
-            self.movies = movies.filter { $0.title.lowercased().contains(searchText) }
-        } else {
-            self.movies = movies
-        }
-        
+        self.movies = movies
         self.lastItemDelegate = itemDelegate
         reloadData()
     }
     
-    //MARK: Filtering
-    
     /**
-     Filters movies in the table view.
-     - parameter searchText: The search text that was entered by the user to filter results. Defaults to nil.
+     Sets search mode enabled or disabled.
+     - parameter isEnabled: If search mode should be enabled or disabled.
      */
-    func filterMovies(withSearchText searchText: String? = nil) {
+    func setSearchMode(enabled isEnabled: Bool) {
+        self.isSearching = isEnabled
+    }
+    
+    //MARK: Table Footer View
+    
+    private func updateTableFooter(isSearching: Bool = false) {
         
-        /// Check that search hasn't been cleared
-        if searchText?.isEmpty ?? true {
-            currentSearchText = nil
-            movies = allMovies
-            reloadData()
-            return
+        var footerView: TableViewFooterView?
+        
+        if let existingFooterView = tableFooterView as? TableViewFooterView {
+            footerView = existingFooterView
+        } else {
+            footerView = Bundle.main.loadNibNamed(TableViewFooterView.nibName, owner: self, options: nil)?.first as? TableViewFooterView
+            footerView?.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 55)
         }
         
-        /// Format search text
-        guard let formattedSearchText = searchText?.lowercased() else {
-            print("Could not find any search text")
-            return
-        }
+        footerView?.loadingLabel?.text = isSearching ? "Looking for more matching results..." : "Loading more popular movies..."
         
-        /// Filter and update table view
-        currentSearchText = formattedSearchText
-        movies = allMovies?.filter { $0.title.lowercased().contains(formattedSearchText) }
-        reloadData()
+        tableFooterView = footerView
     }
     
 }
@@ -90,7 +83,7 @@ extension MoviesTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier = currentSearchText == nil ? TableViewCellSize.regular.rawValue : TableViewCellSize.large.rawValue
+        let identifier = isSearching ? TableViewCellSize.large.rawValue : TableViewCellSize.regular.rawValue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? MoviesTableViewCell else {
             return UITableViewCell()
         }
@@ -109,11 +102,11 @@ extension MoviesTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         /// If in search mode or selected row mode, use automatic dimension
-        if currentSearchText != nil || indexPath == selectedIndexPath {
+        if isSearching || indexPath == selectedIndexPath {
             return UITableViewAutomaticDimension
         }
       
-        return currentSearchText == nil ? 130 : 200
+        return isSearching ? 200 : 130
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -122,6 +115,14 @@ extension MoviesTableView: UITableViewDataSource {
         if indexPath.row == (movies?.count ?? 0) - 1 {
             lastItemDelegate?.didReachLastItem()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isSearching {
+            return nil
+        }
+        
+        return "Most Popular Movies"
     }
 }
 

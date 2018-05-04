@@ -9,13 +9,29 @@
 import Foundation
 import SwiftyJSON
 
+/**
+ The Movie object model
+ */
 struct Movie {
     
+    /// Title of the movie
     let title: String
+    
+    /// Release year of the movie
     let year: Int
+    
+    /// Image URL of the movie
     let imageURL: String?
+    
+    /// Overview/description of the movie
     let overview: String
     
+    
+    /**
+     Parses a JSON object and converts it to a Movie object.
+     - parameter json: The JSON object to parse.
+     - returns: The converted Movie object, if any
+     */
     static func parseJSON(json: JSON) -> Movie? {
         
         guard let title = json[MovieKey.title.rawValue].string else {
@@ -45,9 +61,20 @@ struct Movie {
     }
 }
 
+/**
+ The list of keys in the JSON to parse a Movie Object.
+ */
 enum MovieKey: String {
+    
+    /// Title
     case title
+    
+    /// Release date
     case releaseDate = "release_date"
+    
+    /// Overview
     case overview
+    
+    /// Poster path
     case posterPath = "poster_path"
 }
