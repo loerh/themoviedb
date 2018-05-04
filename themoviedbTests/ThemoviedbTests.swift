@@ -75,27 +75,27 @@ class ThemoviedbTests: XCTestCase {
     
     func testMoviesViewModel() {
         let viewModel = MoviesViewModel()
-        viewModel.fetchMostPopularMovies { (movies) in
+        viewModel.fetchMovies { (movies) in
             XCTAssertNotNil(movies)
         }
     }
     
-    func testMoviesAPI() {
+    func testMostPopularMoviesAPI() {
         let expect = expectation(description: "API Movies Test")
-        APIManager.shared.fetchMostPopularMovies { (movies) in
+        APIManager.shared.fetchMovies(withRequestType: .mostPopular, forPage: 1) { (movies) in
             XCTAssertNotNil(movies)
             expect.fulfill()
         }
         waitForExpectations(timeout: 15, handler: nil)
     }
     
-    func testPerformanceAPIResponse() {
+    func testPerformanceMostPopularAPIResponse() {
         
         var flag = 0
         let expect = expectation(description: "API Response performance")
         self.measure {
             
-            APIManager.shared.fetchMostPopularMovies { (movies) in
+            APIManager.shared.fetchMovies(withRequestType: .mostPopular, forPage: 1) { (movies) in
                 flag += 1
                 print("FLAG: \(flag)")
                 XCTAssertNotNil(movies)

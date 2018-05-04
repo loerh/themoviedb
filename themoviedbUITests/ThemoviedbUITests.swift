@@ -45,14 +45,30 @@ class ThemoviedbUITests: XCTestCase {
     
     func testSearchNoResults() {
         
-        let searchMoviesSearchField = app.searchFields.firstMatch
-        searchMoviesSearchField.tap()
-        searchMoviesSearchField.typeText("difjwuyah")
+        search(text: "difjwuyah")
         XCTAssert(app.cells.count == 0)
     }
     
+    func testCancelSearch() {
+        search(text: "difjwuyah", keepActive: true)
+        XCTAssert(app.cells.count == 0)
+        app.buttons["Cancel"].tap()
+        XCTAssert(app.cells.count > 0)
+    }
+    
     func testTableViewSelection() {
+        let cellHeight = app.cells.firstMatch.frame.size.height
         app.cells.firstMatch.tap()
+        XCTAssert(cellHeight < app.cells.firstMatch.frame.size.height)
+    }
+    
+    private func search(text: String, keepActive: Bool = false) {
+        let searchMoviesSearchField = app.searchFields.firstMatch
+        searchMoviesSearchField.tap()
+        searchMoviesSearchField.typeText(text)
+        if !keepActive {
+            app.buttons["Done"].tap()
+        }
     }
     
 }
